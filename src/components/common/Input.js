@@ -7,12 +7,11 @@ class Input extends Component {
         super(props);
         this.state = { 
             focus: false,
-            error: false
+            error: props.passVal
         };
     }
     onInputFocus() {
-        this.setState({ focus: true });
-        this.setState({ error: this.props.passVal });
+        this.setState({ focus: true });   
     }
     onInputBlur() {
         this.setState({ focus: false });

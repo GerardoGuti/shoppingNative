@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 const CardSection = (props) => {
-    const containerStyle = { ...style.containerStyle, padding: props.padding };
+    const containerStyle = { ...style.containerStyle, marginBottom: props.padding };
 
     const section = (
     <View style={containerStyle}>

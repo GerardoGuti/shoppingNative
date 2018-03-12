@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
 class Enter extends Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         const { changeStyle, majorView, textStyle, viewStyle } = styles;
         let viewStyle1 = { ...viewStyle };
         let viewStyle2 = { ...viewStyle };
-        if (this.props.page === 'Sign Up') {
+        if (this.props.page === 'Sign In') {
             viewStyle1 = { ...viewStyle, backgroundColor: '#11B054' };
         } else {
             viewStyle2 = { ...viewStyle, backgroundColor: '#11B054' };
@@ -37,7 +34,6 @@ const styles = {
         marginLeft: 3
     },
     majorView: {
-        // flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },

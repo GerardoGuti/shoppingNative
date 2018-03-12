@@ -19,9 +19,12 @@ const styles = {
         marginLeft: 5,
         marginRight: 5,
         marginTop: 10, 
-        flex: 1,
-        justifyContent: 'center',
-        flexDirection: 'column'
+        //flex: 1,
+       // justifyContent: 'center',
+        flexDirection: 'column',
+        backgroundColor: 'white',
+        width: 170,
+        height: 250
 
     }
 };
