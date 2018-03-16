@@ -11,7 +11,6 @@ class Shop extends Component {
     render() {
         const content = ( 
             <View>
-                {console.log(this.props)}
                 <Text>
                     Shop
                 </Text>

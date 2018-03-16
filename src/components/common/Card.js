@@ -24,7 +24,7 @@ const styles = {
         flexDirection: 'column',
         backgroundColor: 'white',
         width: 170,
-        height: 250
+        height: 230
 
     }
 };

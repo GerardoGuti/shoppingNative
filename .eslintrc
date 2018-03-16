@@ -3,7 +3,8 @@
     "rules": {
         "arrow-body-style": "off",
         "no-underscore-dangle": "off",
-        "no-param-reassign": "off" 
+        "no-param-reassign": "off",
+        "max-len":"off"
     }
 
 }

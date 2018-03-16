@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import Swiper from 'react-native-swiper';
-import Bar from './Shop/Bar';
+import Header from './common';
+import Bar from './Bar';
 import Shop from './Shop/ShopAxios';
 import Cart from './Cart/Cart';
-import Orders from './Shop/Orders';
+import Orders from './Order/Orders';
+
 
 class Principal extends Component {
     constructor(props) {
@@ -16,6 +18,7 @@ class Principal extends Component {
     render() {
         const content = ( 
             <View style={{ width: '100%', height: '100%' }}>
+                {/* <Header index={this.state.index} />  */}
                 <Swiper
                     loop={false}
                     showsPagination={false}

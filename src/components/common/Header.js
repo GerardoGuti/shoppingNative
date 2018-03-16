@@ -2,9 +2,18 @@ import React from 'react';
 import { Text, View } from 'react-native';
 
 const Header = (props) => {
+    let headerText = '';
+    if (props.index === 0) {
+        headerText = 'Shop';
+    } else if (props.index === 1) {
+        headerText = 'Cart'; 
+    } else {
+        headerText = 'Orders';
+    }
+    
     const { textStyle, viewStyle } = styles;
     const header = (<View style={viewStyle}>
-        <Text style={textStyle}>{props.headerText}</Text >
+        <Text style={textStyle}>{headerText}</Text >
     </View>);
     return header;
 };

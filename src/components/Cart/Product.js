@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 
-const CartItem = (props) => {
+const Product = (props) => {
     const {
       name,
       imageUrl,
@@ -17,13 +18,23 @@ const CartItem = (props) => {
       numberWrapperStyle,
       inputStyle,
       numberControlStyle, 
-      rowStyle
+      rowStyle,
+      iconStyle
     } = styles;
-  
-    return (
-      <View>
+    const content = (
+      <View style={{ marginTop: 15 }}>
         <View style={containerStyle}>
           <View style={rowStyle}>
+            <View style={{ padding: 2 }}>
+              <TouchableOpacity onPress={() => deleteProduct(props)}>
+                <Icon 
+                  name='x' 
+                  size={12} 
+                  style={iconStyle} 
+                />
+              </TouchableOpacity>
+            </View>
+            
             <Image
               style={imageStyle}
               source={{ uri: imageUrl }}
@@ -54,9 +65,17 @@ const CartItem = (props) => {
         </View>
       </View>
     );
+    return content;
   };
   
   const styles = {
+    iconStyle: { 
+      color: '#F75A56',
+      borderColor: '#F75A56',
+      borderWidth: 1,
+      borderRadius: 10,
+      padding: 1.5
+    },
     containerStyle: {
       flex: 1,
       backgroundColor: 'white',
@@ -65,9 +84,10 @@ const CartItem = (props) => {
     imageStyle: {
       height: 100,
       borderWidth: 1,
+      width: 100,
       borderColor: '#C7C1C1',
       padding: 10,
-      flex: 3
+      marginRight: 20
     },
     bodyWrapperStyle: {
       flex: 5,
@@ -83,6 +103,7 @@ const CartItem = (props) => {
     priceStyle: {
       flex: 1,
       fontSize: 18,
+      color: '#3DD0FF',
       fontWeight: '800',
     },
     numberWrapperStyle: {
@@ -98,15 +119,17 @@ const CartItem = (props) => {
       textAlign: 'center'
     },
     inputStyle: {
-      borderWidth: 0.5,
+      borderWidth: 1,
       borderColor: '#a7a7a7',
       borderRadius: 50,
-      fontSize: 20,
+      fontSize: 18,
       padding: 5,
       paddingHorizontal: 6,
       width: 55,
       color: '#4eade7',
-      textAlign: 'center'
+      textAlign: 'center',
+      marginRight: 5,
+
     },
     rowStyle: {
         justifyContent: 'space-between',
@@ -115,12 +138,18 @@ const CartItem = (props) => {
       }
   };
 
-  const onPlusProduct = ({ updateItemQty, _id, quantity }) => {
-    updateItemQty(_id, quantity + 1);
+  const onPlusProduct = ({ updateItemQuantity, _id, quantity }) => {
+    updateItemQuantity(_id, quantity + 1); 
   };
   
-  const onMinusProduct = ({ updateItemQty, _id, quantity }) => {
-    updateItemQty(_id, quantity + (quantity > 0 ? -1 : 0));
+  const onMinusProduct = ({ updateItemQuantity, _id, quantity }) => {
+    console.log(updateItemQuantity);
+    updateItemQuantity(_id, quantity + (quantity > 0 ? -1 : 0));
+  };
+  const deleteProduct = ({ deleteProductCart, _id }) => {
+    console.log(_id);
+    console.log(deleteProductCart);
+    deleteProductCart(_id);
   };
   
-  export default CartItem;
+  export default Product;

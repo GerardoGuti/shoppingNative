@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { addProducttotheCart, updateItemQuantity, createOrder } from '../../actions';
+import { 
+  addProducttotheCart, 
+  updateItemQuantity, 
+  createOrder, 
+  deleteProductCart 
+} from '../../actions';
 import ProdructList from './ProductList';
 
 class Cart extends Component {
   getTotalCost() {
-    const itemsList = this.props.items.slice(0);
+    const itemsList = this.props.products.slice();
     let sum = 0;
     for (const item of itemsList) {
       sum += item.quantity * item.price;
@@ -15,15 +20,26 @@ class Cart extends Component {
   }
 
   createOrder() {
-
+    const order = {
+      status: 'pending',
+      products: this.props.items.map(elt => {
+        elt.product = elt._id;
+        return elt;
+      }),
+      client_id: this.props.clientId
+    };
+    this.props.createOrder(order);
   }
 
   render() {
     const { products } = this.props;
-
-    return (
-      <View style={{ flex: 1 }}>
-        <ProdructList products={products} />
+    const content = (
+      <View style={{ flex: 1, backgroundColor: '#DBDBDB' }}>
+        <ProdructList 
+        products={products} 
+        updateItemQuantity={this.props.updateItemQuantity.bind(this)} 
+        deleteProductCart={this.props.deleteProductCart.bind(this)}
+        />
         <View style={styles.rowStyle}>
         <TouchableOpacity style={styles.buttonStyle} onPress={this.createOrder.bind(this)}>
           <Text style={styles.textStyle}>PLACE THIS ORDER</Text>
@@ -32,14 +48,15 @@ class Cart extends Component {
         </View>
       </View>
     );
+    return content;
   }
 }
 
 const styles = {
   rowStyle: {
     justifyContent: 'space-between',
-        flexDirection: 'row',
-        position: 'relative'
+    flexDirection: 'row',
+    position: 'relative'
   },
   textStyle: {
     alignSelf: 'center',
@@ -67,8 +84,8 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({ cart }) => {
-  const { products } = cart;
+const mapStateToProps = ({ productsStore }) => {
+  const { products } = productsStore;
 
   return { products };
 };
@@ -77,5 +94,6 @@ const mapStateToProps = ({ cart }) => {
 export default connect(mapStateToProps, {
   addProducttotheCart,
   updateItemQuantity,
-  createOrder
+  createOrder,
+  deleteProductCart
 })(Cart);

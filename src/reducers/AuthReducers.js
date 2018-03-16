@@ -35,11 +35,12 @@ export default (state = SCRATCH_STATE, action) => {
       case LOGIN_USER:
         return { ...state, loading: true, error: '' };
       case LOGIN_USER_SUCCESS:
-        return {
-          ...state,
-          ...SCRATCH_STATE,
-          user: action.payload
-        };
+      return {
+        ...state,
+        ...SCRATCH_STATE,
+        user: action.payload,
+        clientId: action.payload._id
+      };
       case LOGIN_USER_FAIL:
         return { ...state, error: 'Authentication Failed.', password: '', loading: false };
       case LOGOUT_USER:

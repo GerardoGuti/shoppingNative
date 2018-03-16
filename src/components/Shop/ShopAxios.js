@@ -38,7 +38,9 @@ const styles = {
         backgroundColor: '#C7C1C1', 
         flexDirection: 'column',
         flexWrap: 'wrap',
+        width: '100%',
         flex: 1,
+        paddingTop: 15
     }
 };
 

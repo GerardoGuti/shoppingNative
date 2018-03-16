@@ -4,10 +4,11 @@ import Product from './Product';
 
 class ProductList extends Component {
   renderItems() {
-    return this.props.products.map((element) =>
+    return this.props.products.map((element, index) =>
       <Product
-        key={element.name}
-        updateItemQty={this.props.updateItemQty ? this.props.updateItemQty.bind(this) : null}
+        key={index}
+        updateItemQuantity={this.props.updateItemQuantity ? this.props.updateItemQuantity.bind(this) : null}
+        deleteProductCart={this.props.deleteProductCart ? this.props.deleteProductCart.bind(this) : null}
         {...element}
       />
     );
